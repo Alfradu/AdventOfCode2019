@@ -6,18 +6,20 @@ namespace AdventOfCode2019
     {
         static void Main(string[] args)
         {
-            Day1 d = new Day1();
-            Day2 d2 = new Day2();
-            Day3 d3 = new Day3();
-            Day4 d4 = new Day4();
-            Day5 d5 = new Day5();
-            d.Puzzle();
-            d2.Puzzle();
-            //d3.Puzzle();
-            d4.Puzzle();
-            d5.Puzzle();
-           
+            /* Day1 d = new Day1();
+             Day2 d2 = new Day2();
+             Day3 d3 = new Day3();
+             Day4 d4 = new Day4();
+             Day5 d5 = new Day5();
 
+             d.Puzzle();
+             d2.Puzzle();
+             //d3.Puzzle();
+             d4.Puzzle();
+             d5.Puzzle();*/
+            Day6 d6 = new Day6();
+            d6.Puzzle();
+           
             Console.ReadKey();
         }
     }
