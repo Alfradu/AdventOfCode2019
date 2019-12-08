@@ -1,19 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AdventOfCode2019
 {
     class Day5
     {
+        public int name;
+        int arg;
         string[] input;
         int[] IntCode;
         bool halted = false;
-        int pointer;
-        public void Puzzle()
+        bool paused = false;
+        public int pointer;
+        public int outputCode;
+        public int[] internalArgs;
+        public int[] ou = new int[0];
+
+        public Day5(string input)
         {
-            input = System.IO.File.ReadAllText(@"K:\Android projects\AdventOfCode2019\input5.txt").Split(',');
+            this.input = input.Split(',');
             readData();
+        }
+
+        public void Puzzle(string input)
+        {
+            readData();
+            run();
+        }
+
+        public void Puzzle(int[] args, int name)
+        {
+            this.name = name;
+            internalArgs = new int[args.Length];
+            if (args != null)
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    internalArgs[i] = args[i];
+                }
+            }
+            arg = internalArgs[internalArgs.Length - 1];
             run();
         }
 
@@ -28,11 +56,70 @@ namespace AdventOfCode2019
 
         public void run()
         {
-            pointer = 0;
+            if (!paused) { pointer = 0; }
+            outputCode = 0;
+            paused = false;
             halted = false;
             while (!halted)
             {
                 readCode();
+            }
+        }
+
+        public void readCode()
+        {
+            int[] opcode = createCode(IntCode[pointer]);
+            Console.WriteLine("System[{0}]: [ADRESS]:{1} [PROGRAM]:{2}", name, pointer, getOpCode(opcode));
+            switch (getOpCode(opcode))
+            {
+                case 1:
+                    outputCode = 1;
+                    add(opcode);
+                    pointer += 4;
+                    break;
+                case 2:
+                    outputCode = 2;
+                    multiply(opcode);
+                    pointer += 4;
+                    break;
+                case 3:
+                    inp();
+                    if (outputCode == 3) { return; }
+                    pointer += 2;
+                    break;
+                case 4:
+                    outputCode = 4;
+                    output(opcode);
+                    pointer += 2;
+                    break;
+                case 5:
+                    outputCode = 5;
+                    jumpIfTrue(opcode);
+                    pointer += 3;
+                    break;
+                case 6:
+                    outputCode = 6;
+                    jumpIfFalse(opcode);
+                    pointer += 3;
+                    break;
+                case 7:
+                    outputCode = 7;
+                    lessThan(opcode);
+                    pointer += 4;
+                    break;
+                case 8:
+                    outputCode = 8;
+                    equals(opcode);
+                    pointer += 4;
+                    break;
+                case 99:
+                    outputCode = 99;
+                    halted = true;
+                    break;
+                default:
+                    Console.WriteLine("System["+name+"]: Unknown opcode, exiting");
+                    halted = true;
+                    break;
             }
         }
 
@@ -56,52 +143,6 @@ namespace AdventOfCode2019
             return arr[arr.Length - 2] * 10 + arr[arr.Length - 1];
         }
 
-        public void readCode()
-        {
-            int[] opcode = createCode(IntCode[pointer]);
-            switch (getOpCode(opcode))
-            {
-                case 1:
-                    add(opcode);
-                    pointer += 4;
-                    break;
-                case 2:
-                    multiply(opcode);
-                    pointer += 4;
-                    break;
-                case 3:
-                    Console.Write("Opcode 3 input: ");
-                    add(int.Parse(Console.ReadLine()), IntCode[pointer + 1]);
-                    pointer += 2;
-                    break;
-                case 4:
-                    Console.Write("Opcode 4 output: ");
-                    output(opcode);
-                    pointer += 2;
-                    break;
-                case 5:
-                    jumpIfTrue(opcode);
-                    pointer += 3;
-                    break;
-                case 6:
-                    jumpIfFalse(opcode);
-                    pointer += 3;
-                    break;
-                case 7:
-                    lessThan(opcode);
-                    pointer += 4;
-                    break;
-                case 8:
-                    equals(opcode);
-                    pointer += 4;
-                    break;
-                case 99:
-                    Console.Write("Opcode 99 Halting program.");
-                    halt();
-                    break;
-            }
-        }
-
         public void changeValue(int pos, int val)
         {
             IntCode[pos] = val;
@@ -112,16 +153,44 @@ namespace AdventOfCode2019
             return IntCode[pos];
         }
 
+        public void inp()
+        {
+            if (internalArgs.Length > 0)
+            {
+                var inputCounter = 0;
+                inputCounter = internalArgs[0];
+                internalArgs = internalArgs.Skip(1).ToArray();
+                IntCode[IntCode[pointer + 1]] = inputCounter;
+            }
+            else
+            {
+                outputCode = 3;
+                paused = true;
+                halted = true;
+                //IntCode[IntCode[pointer + 1]] = int.Parse(Console.ReadLine());
+            }
+        }
 
         public void output(int[] code)
         {
             int outp = code[2] == 0 ? IntCode[IntCode[pointer + 1]] : IntCode[pointer + 1];
-            Console.WriteLine(outp);
+            Console.WriteLine("System["+name+"]: output: "+ outp + " input: "+arg);
+            addToOutPutArr(outp);
         }
 
-        public void add(int value, int pos)
+        public void addToOutPutArr(int nr)
         {
-            IntCode[pos] = value;
+            int[] _ = new int[ou.Length];
+            for (int i = 0; i < _.Length; i++)
+            {
+                _[i] = ou[i];
+            }
+            ou = new int[_.Length + 1];
+            for (int i = 0; i < _.Length; i++)
+            {
+                ou[i] = _[i];
+            }
+            ou[ou.Length - 1] = nr;
         }
 
         public void add(int[] code)
@@ -185,11 +254,6 @@ namespace AdventOfCode2019
             param3 = code[0] == 0 ? IntCode[pointer + 3] : pointer + 3;
 
             IntCode[param3] = IntCode[param1] == IntCode[param2] ? 1 : 0;
-        }
-
-        public void halt()
-        {
-            halted = true;
         }
     }
 }
