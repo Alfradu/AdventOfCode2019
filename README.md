@@ -9,6 +9,7 @@ My C# attempts at solving the AdventureOfCode2019 puzzles.
 * [Day 5: Sunny with a Chance of Asteroids](AdventOfCode2019/Day5.cs)
 * [Day 6: Universal Orbit Map](AdventOfCode2019/Day6.cs)
 * [Day 7: Amplification Circuit](AdventOfCode2019/Day7.cs)
+* [Day 8: Space Image Format](AdventOfCode2019/Day8.cs)
 
            _/^\_      
           <     >
