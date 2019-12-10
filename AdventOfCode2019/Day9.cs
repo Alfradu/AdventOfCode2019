@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace AdventOfCode2019
 {
-    class Day5
+    class Day9
     {
         public void Puzzle()
         {
-            Comp c = new Comp(System.IO.File.ReadAllText(@"K:\Android projects\AdventOfCode2019\input5.txt"), true);
+            string input = System.IO.File.ReadAllText(@"K:\Android projects\AdventOfCode2019\input9.txt");
+            Comp c = new Comp(input, true);
             c.Puzzle(0);
         }
     }

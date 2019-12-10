@@ -13,16 +13,18 @@ namespace AdventOfCode2019
             //Day5 d5 = new Day5();
             //Day6 d6 = new Day6();
             //Day7 d7 = new Day7();
-            Day8 d8 = new Day8();
+            //Day8 d8 = new Day8();
+            Day9 d9 = new Day9();
 
             //d.Puzzle();
             //d2.Puzzle();
             //d3.Puzzle();
             //d4.Puzzle();
-            //d5.Puzzle(System.IO.File.ReadAllText(@"K:\Android projects\AdventOfCode2019\input5.txt"));
+            //d5.Puzzle();
             //d6.Puzzle();
             //d7.Puzzle();
-            d8.Puzzle();
+            //d8.Puzzle();
+            d9.Puzzle();
 
             Console.ReadKey();
         }
