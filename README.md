@@ -11,6 +11,7 @@ My C# attempts at solving the AdventureOfCode2019 puzzles.
 * [Day 7: Amplification Circuit](AdventOfCode2019/Day7.cs)
 * [Day 8: Space Image Format](AdventOfCode2019/Day8.cs)
 * [Day 9: Sensor Boost](AdventOfCode2019/Day9.cs)
+* [Day 10: Monitoring Station](AdventOfCode2019/Day10.cs)
 
            _/^\_      
           <     >
