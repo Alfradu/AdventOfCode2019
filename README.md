@@ -13,6 +13,7 @@ My C# attempts at solving the AdventureOfCode2019 puzzles.
 * [Day 9: Sensor Boost](AdventOfCode2019/Day9.cs)
 * [Day 10: Monitoring Station](AdventOfCode2019/Day10.cs)
 * [Day 11: Space Police](AdventOfCode2019/Day11.cs)
+* [Day 12: The N-Body Problem](AdventOfCode2019/Day12.cs)
 
            _/^\_      
           <     >

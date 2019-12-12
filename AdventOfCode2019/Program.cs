@@ -16,8 +16,8 @@ namespace AdventOfCode2019
             //Day8 d8 = new Day8();
             //Day9 d9 = new Day9();
             //Day10 d10 = new Day10();
-            Day11 d11 = new Day11();
-
+            //Day11 d11 = new Day11();
+            Day12 d12 = new Day12();
             //d.Puzzle();
             //d2.Puzzle();
             //d3.Puzzle();
@@ -28,7 +28,8 @@ namespace AdventOfCode2019
             //d8.Puzzle();
             //d9.Puzzle();
             //d10.Puzzle();
-            d11.Puzzle();
+            //d11.Puzzle();
+            d12.Puzzle();
 
             Console.ReadKey();
         }
