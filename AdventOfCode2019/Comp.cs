@@ -146,6 +146,7 @@ namespace AdventOfCode2019
                     inputCounter = internalArgs[0];
                     internalArgs = internalArgs.Skip(1).ToArray();
                     IntCode[checkParam(code[2], pointer + 1)] = inputCounter;
+                    printMsg("System[" + name + "]: Input: " + inputCounter);
                 }
                 else
                 {
