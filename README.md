@@ -12,6 +12,7 @@ My C# attempts at solving the AdventureOfCode2019 puzzles.
 * [Day 8: Space Image Format](AdventOfCode2019/Day8.cs)
 * [Day 9: Sensor Boost](AdventOfCode2019/Day9.cs)
 * [Day 10: Monitoring Station](AdventOfCode2019/Day10.cs)
+* [Day 11: Space Police](AdventOfCode2019/Day11.cs)
 
            _/^\_      
           <     >
