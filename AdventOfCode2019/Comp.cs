@@ -36,6 +36,7 @@ namespace AdventOfCode2019
 
         public void Puzzle(int[] args, int name)
         {
+            manualMode = false;
             this.name = name;
             internalArgs = new int[args.Length];
             if (args != null)
@@ -184,7 +185,7 @@ namespace AdventOfCode2019
             return arr[arr.Length - 2] * 10 + arr[arr.Length - 1];
         }
 
-        private void changeValue(long pos, int val)
+        public void changeValue(long pos, int val)
         {
             IntCode[pos] = val;
         }
@@ -204,6 +205,10 @@ namespace AdventOfCode2019
             outputArr[outputArr.Length - 1] = nr;
         }
 
+        public void clearOutPutArr()
+        {
+            outputArr = new long[0];
+        }
         private void add(long[] code)
         {
             IntCode[checkParam(code[0], pointer + 3)] = IntCode[checkParam(code[1], pointer + 2)] + IntCode[checkParam(code[2], pointer + 1)];
